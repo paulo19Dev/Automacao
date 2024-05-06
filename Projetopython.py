@@ -14,7 +14,7 @@ data_formatada = data_atual.strftime("%d/%m/%Y")
 
 Janela = Tk()
 Janela.geometry('1000x500')
-Janela.config(bg='#A7A7A7')
+Janela.config(bg='#303030')
 Janela.title('Sistema automatizado')
 
 class Aplicacao:
@@ -70,21 +70,27 @@ class Aplicacao:
         self.container.pack()
         
         self.title = Label(text='SISTEMA DE COBRANÇA AUTOMATIZADO')
-        self.title.config(bg='#A7A7A7',fg='black')
+        self.title['font'] = 30
+        self.title.config(bg='#303030',fg='white')
         self.title.pack()
         
-        self.start = Button(text='Carregar Relátorio',command=self.carregar_relatorio)
+        self.label_dados = Text(width=95, height=15)
+        self.label_dados.config(bg='#DFDFDF',fg='black')
+        self.label_dados.pack()
+        
+        self.bloco = Frame(master)
+        self.bloco.config(bg='#303030')
+        self.bloco.pack()
+        
+        self.start = Button(self.bloco,text='Carregar Relátorio',command=self.carregar_relatorio)
         self.start['width'] = 20
         self.start.config(bg='white',fg='black')
-        self.start.pack()
+        self.start.pack(side='left',padx=5,pady=10)
         
-        self.label_dados = Text(width=95, height=15)
-        self.label_dados.pack()
-
-        self.botao = Button(text='Disparar Cobrança',command=self.Disparar_mensagens_Email)
+        self.botao = Button(self.bloco,text='Disparar Cobrança',command=self.Disparar_mensagens_Email)
         self.botao.config(bg='white',fg='black')
         self.botao['width'] = 20
-        self.botao.pack()
-
+        self.botao.pack(side='left',padx=5)
+        
 Aplicacao(Janela)
 Janela.mainloop()
